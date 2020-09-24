@@ -249,7 +249,7 @@ type fakeDo struct {
 	t                 *testing.T
 }
 
-func (d *fakeDo) do(stackdriverRequest *stackdriver.ProjectsTimeSeriesListCall) (*stackdriver.ListTimeSeriesResponse, error) {
+func (d *fakeDo) do(stackdriverRequest *stackdriver.ProjectsTimeSeriesListCall, _ string) (*stackdriver.ListTimeSeriesResponse, error) {
 	requestString := fmt.Sprintf("%v", stackdriverRequest)
 	requestedResources := make(map[string]int)
 	d.requests.countRequests++

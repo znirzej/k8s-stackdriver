@@ -52,6 +52,7 @@ const (
 
 type clock interface {
 	Now() time.Time
+	Since(time.Time) time.Duration
 }
 
 type realClock struct{}
@@ -59,6 +60,7 @@ type realClock struct{}
 func (c realClock) Now() time.Time {
 	return time.Now()
 }
+func (c realClock) Since(d time.Time) time.Duration { return time.Since(d) }
 
 // Translator is a structure used to translate between Custom Metrics API and Stackdriver API
 type Translator struct {

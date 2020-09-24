@@ -22,12 +22,12 @@ const (
 
 // For testing proposes
 type doRequestFunction interface {
-	do(*stackdriver.ProjectsTimeSeriesListCall) (*stackdriver.ListTimeSeriesResponse, error)
+	do(*stackdriver.ProjectsTimeSeriesListCall, string) (*stackdriver.ListTimeSeriesResponse, error)
 }
 type regularDo struct{}
 
-func (d *regularDo) do(stackdriverRequest *stackdriver.ProjectsTimeSeriesListCall) (*stackdriver.ListTimeSeriesResponse, error) {
-	return stackdriverRequest.Do()
+func (d *regularDo) do(stackdriverRequest *stackdriver.ProjectsTimeSeriesListCall, resource string) (*stackdriver.ListTimeSeriesResponse, error) {
+	return translator.Do(stackdriverRequest, resource)
 }
 
 type stackdriverCoreClient struct {
